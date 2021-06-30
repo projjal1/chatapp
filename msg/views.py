@@ -33,7 +33,7 @@ def chat(request):
         else:
             return render(request,'chatscr.html',{'error':'Cannot send empty field message.'})
     else:       
-        return render(request,'chatscr.html',{'docs':ob,'opt':options})
+        return render(request,'chatscr.html',{'docs':ob.order_by('-timestamp',),'opt':options})
 
 
 def view(request,chat_id):
@@ -49,7 +49,7 @@ def change_view(request):
     return redirect('chatscreen')
 
 def sent(request):
-    ob=plot.objects.filter(sender=request.user.username)
+    ob=plot.objects.filter(sender=request.user.username).order_by('-timestamp')
     return render(request,"sent_all.html",{'obj':ob})
 
 def cont_view(request):

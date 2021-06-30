@@ -2,27 +2,25 @@
 
 {%block content%}
 
+<h3>Send Messages:</h3>
 <form method="POST" action="{%url 'chatscreen'%}">
     {%csrf_token%}
-    Receiver:
-    <br>
-    <input type="text" name="rc">
-    <br>
-    <br>
-    Message:
-    <br>
-    <input type="text" name="ms">
-    <br>
-    <br>
-    <input type="submit" name="Send message!">
+    <div class="form-group">
+        <label for="rc-add">Receiver:</label>  <br>
+        <input id="rc-add" type="text" name="rc" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="ms-add">Message:</label>  <br>
+        <input id="ms-add" type="text" name="ms" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <input type="submit" style="width: 50%;" class="form-control btn btn-primary" name="Send message!">
+    </div>
 </form>
 
-<lr/>
-<br>
-<br>
-Showing Messages received:- 
-<br>
---------------------------------------------------------------
+
+<p style="padding-top:30px;color:blue">Showing Messages received:- </p>
 <form method="POST" action="{%url 'change_view'%}" >
         {%csrf_token%}
         {%if opt%}
@@ -31,10 +29,9 @@ Showing Messages received:-
             <input class="btn btn-primary" type="submit" value="Show only unread contents.">
         {%endif%}
 </form>
+<br>
 
---------------------------------------------------------------
-
-<div class="container">
+<div class="container-fluid">
 
     {% if docs%}
 
@@ -44,42 +41,42 @@ Showing Messages received:-
             {%if each.read%}
 
             {%else%}
-            Message:-
-            <p>{{each.msg}}</p>
-          
-            Sender:-
-            <p>{{each.sender}}</p> 
-            Time Sent:-
-            <p>{{each.timestamp}}</p>
-            <br> 
-            <br>
-            <form method="POST" action="{{each.id}}" >
-                {%csrf_token%}
-                <input class="btn btn-primary" type="submit" value="Mark as Read">
-            </form>
-            <p>-------------------------------------------------</p>
-        
+            <div class="card">
+                <div class="card-body">
+                    <h5>{{each.msg}}</h5>
+                    Sent by <b>{{each.sender}}</b>  at   <b>{{each.timestamp}}</b>
+                </div>
+                <div class="card-footer">
+                    <form method="POST" action="{{each.id}}" >
+                        {%csrf_token%}
+                        <input class="btn btn-primary" type="submit" value="Mark as Read">
+                    </form>
+                </div>
+            </div>
             {%endif%}
 
         {%else%}
-            Message:-
-            <p>{{each.msg}}</p>
-           
-            Sender:-
-            <p>{{each.sender}}</p> 
-            Time Sent:-
-            <p>{{each.timestamp}}</p>
-            <br> 
-            <br>
             {%if each.read%}
-
+            <div class="card">
+                <div class="card-body">
+                    <h5>{{each.msg}}</h5>
+                    Sent by <b>{{each.sender}}</b>   at   <b>{{each.timestamp}}</b>
+                </div>
+            </div>
             {%else%}
-            <form method="POST" action="{{each.id}}" >
-                {%csrf_token%}
-                <input class="btn btn-primary" type="submit" value="Mark as Read">
-            </form>
+            <div class="card">
+                <div class="card-body">
+                    <h5>{{each.msg}}</h5>
+                    Sent by <b>{{each.sender}}</b>  at   <b>{{each.timestamp}}</b>
+                </div>
+                <div class="card-footer">
+                    <form method="POST" action="{{each.id}}" >
+                        {%csrf_token%}
+                        <input class="btn btn-primary" type="submit" value="Mark as Read">
+                    </form>
+                </div>
+            </div>
             {%endif%}
-            <p>-------------------------------------------------</p>
         {%endif%}
             
 
