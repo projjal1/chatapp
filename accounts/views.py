@@ -21,8 +21,7 @@ def login(request):
 def logout(request):
     if request.method=="POST":
         auth.logout(request)
-        return render(request,"home.html")
-
+        return redirect("home")
 
 def signup(request):
     if request.method=="POST":
@@ -31,13 +30,21 @@ def signup(request):
                 user=User.objects.get(username=request.POST['username'])
                 return render(request,'sign.html',{'error':'Sorry, Username already taken.'})
             except User.DoesNotExist:
-                user=User.objects.create_user(request.POST['username'],password=request.POST['pass1'])
-                auth.login(request,user)
-                return render(request,"home.html")
+
+                field1=request.POST['username']
+                field2=request.POST['pass1']
+                field3=request.POST['first']
+                field4=request.POST['last']
+                field5=request.POST['email']
+
+                if(field1 and field2 and field3 and field4):
+                    user=User.objects.create_user(field1,password=field2,first_name=field3,last_name=field4,email=field5)
+                    auth.login(request,user)
+                    return render(request,"home.html")
+                else:
+                    return render(request,'sign.html',{'error':'* Fill all details *'})
 
         else:
             return render(request,'sign.html',{'error':'Sorry, Passwords do not match.'}) 
     else:
         return render(request,'sign.html')
-
-

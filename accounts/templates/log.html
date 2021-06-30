@@ -7,25 +7,30 @@
 
 {{error}}
 {% endif%}
-<br>
 
-<h1>Log In!</h1>
+<center>
+<img src="/static/login.png" width="50%">
 
-<br>
+<h1 style="padding-bottom: 10px;">Log In!</h1>
+
 <form method="POST" action="{%url 'login' %}">
 {%csrf_token%}
 
-    Username:
+    <div class="form-group">
+        <label for="name-add">Enter Username:</label>  <br>
+        <input class="form-control" style="width: 50%;" type="text" id="name-add" name="username"/>
+    </div>
+    
+    
+    <div class="form-group">
+        <label for="pass-add">Enter Password:</label>   <br>
+        <input class="form-control" style="width: 50%;" type="password" name="pass1"/>
+    </div>
+
     <br>
-    <input type="text" name="username"/>
-    <br>
-    Enter Password:
-    <br>
-    <input type="password" name="pass1"/>
-    <br>
-    <br>
-    <input class="btn btn-primary" type="submit" value="Log In!" />
+    <input class="btn btn-primary form-control" style="width: 50%;" type="submit" value="Log In!" />
 
 </form>
+</center>
 
 {%endblock%}

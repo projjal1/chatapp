@@ -6,4 +6,8 @@ class plot(models.Model):
     receiver=models.CharField(max_length=20)
     timestamp=models.DateTimeField()
     read=models.IntegerField(default=0)
-    '''group=models.CharField(max_length=20)'''
+
+
+class contact_list(models.Model):
+    user=models.CharField(max_length=20)
+    contact=models.CharField(max_length=20)

@@ -4,7 +4,7 @@ from accounts import views
 
 urlpatterns = [
     path('admin/', admin.site.urls,name='admin'),
-    path('',views.base,name="Home"),
+    path('',views.base,name='home'),
     path('accounts/',include('accounts.urls')),
     path('messages/',include('msg.urls')),
 ]

@@ -7,28 +7,50 @@
 
 {{error}}
 {% endif%}
-<br>
 
-<h1>Sign Up!</h1>
+<center>
+    
+<img src="/static/signup.jpg">
+<h1 style="padding-bottom: 10px;padding-top: 25px;">Sign Up!</h1>
 
 <br>
 <form method="POST" action="{%url 'signup' %}">
 {%csrf_token%}
 
-    Username:
-    <br>
-    <input type="text" name="username"/>
-    <br>
-    Enter Password:
-    <br>
-    <input type="password" name="pass1"/>
-    <br>
-    Confirm Password:
-    <br>
-    <input type="password" name="pass2"/>
-    <br>
-    <br>
-    <input class="btn btn-primary" type="submit" value="Sign Up!" />
+    <div class="form-group">
+        <label for="user-add" >Username:</label> <br>
+        <input class="form-control" style="width: 50%" type="text" id="user-add" name="username" placeholder="Must be filled"/>
+    </div>
+
+    <div class="form-group">
+        <label for="fname-add">First Name:</label>  <br>
+        <input class="form-control" style="width:50%;" id="fname-add" type="text" name="first" placeholder="Must be filled"/>
+    </div>
+
+    <div class="form-group">
+        <label for="lname-add">Last Name:</label>  <br>
+        <input class="form-control" style="width:50%;" id="lname-add" type="text" name="last" placeholder="Must be filled"/>
+    </div>
+
+    <div class="form-group">
+        <label for="pass1-add">Enter Password:</label>  <br>
+        <input class="form-control" style="width:50%;" id="pass1-add" type="password" name="pass1"/>
+    </div>
+
+    <div class="form-group">
+        <label for="pass2-add">Confirm Password:</label>  <br>
+        <input class="form-control" style="width:50%;" id="pass2-add" type="password" name="pass2"/>
+    </div>
+
+
+    <div class="form-group">
+        <label for="email-add">Enter email:</label>   <br>
+        <input class="form-control" style="width: 50%;" id="email-add" type="email" name="email" placeholder="Optional"/>
+
+    <div class="form-group">
+        <br>
+        <input class="btn btn-primary form-control" style="width: 50%;" type="submit" value="Sign Up!" />
+    </div>
 
 </form>
 

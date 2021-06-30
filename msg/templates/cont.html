@@ -1,0 +1,66 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+<div type="container">
+
+    {% if error %}
+
+    {{error}}
+
+    {%endif%}
+
+    </br>
+
+    <form method="POST" action="{%url 'contact_list'%}">
+        {%csrf_token%}
+        Contact name:
+        <br>
+        <input type="text" name="nm">
+        <br>
+        <br>
+        <input class="btn btn-primary" type="submit" value="Add to list">
+    </form>
+
+    <hr>
+    <hr>
+
+</div>
+
+<div type="container">
+
+    {%if list%}
+
+        <style type="text/css">
+
+        table
+        {
+            width:1000px;table-layout:fixed;
+        }
+        tr,td,th
+        {
+            border: 2px solid black;
+        }
+        </style>
+
+        <table width=2 cellpadding=10px cellspacing=10px>
+        <tr><th>Username</th><th >First Name</th><th>Last Name</th><th>Email</th></tr>
+        {%for each in list%}
+
+        <tr>
+            <td>{{each.username}}</td>
+            <td>{{each.first_name}} </td>
+            <td>{{each.last_name}}</td>
+            <td>{{each.email}}</td>
+        </tr>
+        {%endfor%}
+
+        </table>
+    {%else%}
+        <p>You haven't added any contacts</p>
+    {%endif%}
+
+</div>
+
+
+{%endblock%}

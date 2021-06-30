@@ -8,7 +8,9 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Accounts Section..</title>
+
+    <link rel="icon" href="/static/world.png" type="image/icon type">
+    <title>Chat Platform</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
 
@@ -39,7 +41,7 @@
     <header>
         
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Messaging Platform.</a>
+  <a class="navbar-brand" href="{%url 'home'%}">Messaging Platform.</a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"  >
     <span class="navbar-toggler-icon"></span>
@@ -53,7 +55,7 @@
       {% if user.is_authenticated %}
 
       <li class="nav-item ">
-          <a class="nav-link" >Signed in .<span class="sr-only">(current)</span></a>
+          <a class="nav-link" >Signed in as {{request.user.username}}.<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="javascript:document.getElementById('logout').submit()">LogOut</a>
@@ -65,6 +67,12 @@
         <li class="nav-item">
             <a class="nav-link" href="{%url 'chatscreen'%}">Messages</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'sent'%}">Sent</a>
+      </li>
+	<li class="nav-item">
+       <a class="nav-link" href="{%url 'contact_list'%}">Contacts</a>
+      </li>
 
       {% else %}
       <li class="nav-item ">
@@ -88,17 +96,24 @@
  
 </header>
 
-<div class="container ">
+<style>
+  h1
+  {font-size: 100sp; color:red;}
+  p{font-family: 'Segoe UI';}
+</style>
 
-  <br>
-  <br>
+
+<body>
+
+<div class="container-fluid" style="padding-top: 20px;">
+
   {% block content%}
   {% endblock%}
 
 </div>
+</body>
 
-<footer class="text-muted">
-  <br><br><br><br><br>
+<footer class="text-muted" style="padding-top: 30px;">
   <div class="container text-center">
     <p>Copyright @Projjal Gop {%now "Y"%}</p>
   </div>

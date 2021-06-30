@@ -16,6 +16,7 @@
     <br>
     <input type="submit" name="Send message!">
 </form>
+
 <lr/>
 <br>
 <br>
@@ -37,49 +38,53 @@ Showing Messages received:-
 
     {% if docs%}
 
-    {%if opt%}
-    {%if each.read%}
         {%for each in docs.all%}
+
+        {%if opt%}
+            {%if each.read%}
+
+            {%else%}
             Message:-
             <p>{{each.msg}}</p>
+          
             Sender:-
             <p>{{each.sender}}</p> 
             Time Sent:-
             <p>{{each.timestamp}}</p>
-            <br>   
+            <br> 
+            <br>
+            <form method="POST" action="{{each.id}}" >
+                {%csrf_token%}
+                <input class="btn btn-primary" type="submit" value="Mark as Read">
+            </form>
+            <p>-------------------------------------------------</p>
+        
+            {%endif%}
+
+        {%else%}
+            Message:-
+            <p>{{each.msg}}</p>
+           
+            Sender:-
+            <p>{{each.sender}}</p> 
+            Time Sent:-
+            <p>{{each.timestamp}}</p>
+            <br> 
+            <br>
             {%if each.read%}
-                
+
             {%else%}
             <form method="POST" action="{{each.id}}" >
                 {%csrf_token%}
                 <input class="btn btn-primary" type="submit" value="Mark as Read">
-
             </form>
             {%endif%}
-            <p>---------------------------------------------------------</p>
-        {%endfor%}
-    {%endif%}
-    {%else%}
-    {%for each in docs.all%}
-    Message:-
-    <p>{{each.msg}}</p>
-    Sender:-
-    <p>{{each.sender}}</p> 
-    Time Sent:-
-    <p>{{each.timestamp}}</p>
-    <br>   
-    {%if each.read%}
-        
-    {%else%}
-    <form method="POST" action="{{each.id}}" >
-        {%csrf_token%}
-        <input class="btn btn-primary" type="submit" value="Mark as Read">
+            <p>-------------------------------------------------</p>
+        {%endif%}
+            
 
-    </form>
-    {%endif%}
-    <p>---------------------------------------------------------</p>
-{%endfor%}
-    {%endif%}
+        {%endfor%}
+        
     {%else%}
         <p>You have no messages or no unread ones.</p>
     {%endif%}

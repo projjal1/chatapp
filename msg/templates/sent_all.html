@@ -1,0 +1,47 @@
+{% extends 'base.html'%}
+{%load staticfiles%}
+
+{%block content%}
+
+
+
+<div class="container-fluid">
+    <h><b>Sent Message Logs</b></h>
+    <br>
+    <br>
+</div>
+
+
+
+<div class="container">
+    {%if obj%}
+
+        {%for each in obj.all%}
+
+            Message:-
+            <p>{{each.msg}}</p>
+            Receiver:-
+            <p>{{each.receiver}}</p> 
+            Time Sent:-
+            <p>{{each.timestamp}}</p>
+            Status:-
+            {%if each.read%}
+            Seen
+            <img width=20 height=20 src={%static 'read.jpg'%}></img>
+            {%else%}
+            Sent
+            <img width=20 height=20 src={%static 'unread.png'%}></img>
+            {%endif%}
+            <br> 
+            <br>
+
+            <p>-----------------------------------</p>
+        {%endfor%}
+        
+    {%else%}
+        <p>You haven't send messages to anyone.</p>
+    {%endif%}
+</div>
+
+
+{%endblock%}

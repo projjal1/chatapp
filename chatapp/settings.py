@@ -78,8 +78,13 @@ WSGI_APPLICATION = 'chatapp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd9pumsctrjsagp',
+        'USER':'owwstfvwdppzuo',
+        'PASSWORD':'f10e2efede8f67132e7bbef47915bb8122c75f85f845a86687d6e8dc88af29c1',
+        'PORT':'5432',
+        'HOST':'ec2-23-21-156-171.compute-1.amazonaws.com',
+
     }
 }
 
@@ -114,14 +119,14 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 
-STATICFILES_DIR=[os.path.join(BASE_DIR,'static')]
+STATICFILES_DIRS=[os.path.join(BASE_DIR,'static/')]
 STATIC_ROOT=os.path.join(BASE_DIR,'static')
 STATIC_URL = '/static/'
 
